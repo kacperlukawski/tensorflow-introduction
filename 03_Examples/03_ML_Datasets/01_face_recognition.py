@@ -76,17 +76,14 @@ target_vector = tf.placeholder(dtype=tf.float32, shape=(None, CLASSES_COUNT),
 # Create hidden layers
 last_layer = input_vector
 for i in range(len(HIDDEN_LAYERS_SIZE)):
-    layer_name = 'layer_%i' % (i,)
-    weights_name = 'weights_%i' % (i,)
-    biases_name = 'biases_%i' % (i,)
-    # create weights and biases
+    # Create weights and biases
     last_layer_shape = last_layer.get_shape()
     weights = tf.Variable(tf.random_normal(shape=(int(last_layer_shape[1]), HIDDEN_LAYERS_SIZE[i])),
-                          name=weights_name)
+                          name='weights_%i' % (i,))
     biases = tf.Variable(tf.constant(INITIAL_BIAS, shape=(1, HIDDEN_LAYERS_SIZE[i])),
-                         name=biases_name)
+                         name='biases_%i' % (i,))
     # Create a new hidden layer and set it as a new last one
-    last_layer = tf.sigmoid(tf.matmul(last_layer, weights) + biases, name=layer_name)
+    last_layer = tf.sigmoid(tf.matmul(last_layer, weights) + biases, name='layer_%i' % (i,))
 
 # Connect the output layer and create whole NN
 last_layer_shape = last_layer.get_shape()
@@ -126,4 +123,4 @@ with tf.Session() as session:
     })
 
     # Check correct predictions
-    print(prediction_accuracy)
+    print('Accuracy:', prediction_accuracy)
