@@ -1,9 +1,9 @@
 import tensorflow as tf
 
 
-x = tf.Variable(0.0, name='x')
-a = tf.constant(2.0, name='a')
-b = tf.constant(1.0, name='b')
+x = tf.Variable(0.0, name="x")
+a = tf.constant(2.0, name="a")
+b = tf.constant(1.0, name="b")
 y = a * x + b
 
 with tf.Session() as session:
