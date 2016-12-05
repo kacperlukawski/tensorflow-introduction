@@ -16,7 +16,8 @@ target = tf.placeholder(dtype=tf.float32, name="target")
 
 # Defining cost function and the way how to optimize it
 cost = tf.squared_difference(y, target, name="cost")
-optimizer = tf.train.GradientDescentOptimizer(learning_rate=LEARNING_RATE).minimize(cost)
+optimizer = tf.train.GradientDescentOptimizer(
+    learning_rate=LEARNING_RATE).minimize(cost)
 
 # Evaluate the calculations
 dataset = []
