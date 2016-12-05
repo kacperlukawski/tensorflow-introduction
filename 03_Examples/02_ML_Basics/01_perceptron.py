@@ -4,7 +4,7 @@ import tensorflow as tf
 import numpy as np
 
 INPUT_SIZE = 2
-DATASET_SIZE = 13
+DATASET_SIZE = 25
 LEARNING_RATE = 0.01
 
 # All the tensors
@@ -25,8 +25,8 @@ for _ in range(DATASET_SIZE):
     dataset.append(
         (np.array(sample_vector).reshape((INPUT_SIZE, 1)),
          target_value))
-# print(dataset)
-# exit()
+
+# Fit model and run it on the examples
 init_op = tf.initialize_all_variables()
 with tf.Session() as session:
     # But initialize the variables first...
@@ -37,11 +37,8 @@ with tf.Session() as session:
                 x: sample,
                 target: target_value
             })
-            # print("Epoch", epoch, "cost:", epoch_cost)
-        # y_val = session.run(y, feed_dict={x: np.array([1.0, 0.5]).reshape(INPUT_SIZE, 1)})
-        # print(y_val)
 
-    print(session.run(y, {x: np.array([0.1, 0.1]).reshape((INPUT_SIZE, 1))}))
-    print(session.run(y, {x: np.array([0.5, 0.5]).reshape((INPUT_SIZE, 1))}))
-    print(session.run(y, {x: np.array([0.7, 0.7]).reshape((INPUT_SIZE, 1))}))
-    print(session.run(y, {x: np.array([0.9, 0.9]).reshape((INPUT_SIZE, 1))}))
+    print(session.run(y, {x: np.array([[0.1], [0.1]])}))
+    print(session.run(y, {x: np.array([[0.5], [0.5]])}))
+    print(session.run(y, {x: np.array([[0.7], [0.7]])}))
+    print(session.run(y, {x: np.array([[0.9], [0.9]])}))
